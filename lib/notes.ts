@@ -1,6 +1,7 @@
 import { readdir, readFile } from "node:fs/promises";
 import path from "node:path";
 import matter from "gray-matter";
+import type { TocItem } from "@toyonix/web-kit/react";
 import { renderMarkdown } from "./markdown";
 
 /**
@@ -32,6 +33,8 @@ export interface NoteMeta {
 
 export interface Note extends NoteMeta {
   html: string;
+  /** ## and ### headings, for the table of contents. */
+  toc: TocItem[];
 }
 
 interface ParsedNote extends NoteMeta {
@@ -104,7 +107,7 @@ export async function getNote(slug: string): Promise<Note> {
   const note = (await loadNotes()).find((candidate) => candidate.slug === slug);
   if (!note) throw new Error(`No published note "${slug}"`);
   const { body, file, ...meta } = note;
-  return { ...meta, html: await renderMarkdown(body, `content/${file}`) };
+  return { ...meta, ...(await renderMarkdown(body, `content/${file}`)) };
 }
 
 /** "Nov 7, 2025" (dates are calendar dates, so format in UTC). */

@@ -8,6 +8,7 @@ import {
   Eyebrow,
   Lead,
   Prose,
+  TableOfContents,
   Tag,
   Tags,
 } from "@toyonix/web-kit/react";
@@ -57,7 +58,11 @@ export default async function NotePage({ params }: Props) {
             </Tags>
           ) : null}
         </header>
-        <Prose as="div" dropcap dangerouslySetInnerHTML={{ __html: note.html }} />
+        {/* Wide screens: sticky "On this page" column. Phones: a button opening a slide-in menu. */}
+        <div className="tx-with-toc">
+          <Prose as="div" dropcap dangerouslySetInnerHTML={{ __html: note.html }} />
+          <TableOfContents items={note.toc} />
+        </div>
       </article>
       <ButtonRow className="pb-8">
         <Button asChild variant="secondary">
