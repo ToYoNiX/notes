@@ -10,7 +10,10 @@ export const metadata: Metadata = {
   title: { default: `${site.title} · toyonix`, template: `%s · ${site.title} · toyonix` },
   description: site.description,
   alternates: {
-    types: { "application/rss+xml": [{ url: withBasePath("/feed.xml"), title: `${site.title} · toyonix` }] },
+    types: {
+      "application/rss+xml": [{ url: withBasePath("/feed.xml"), title: `${site.title} · toyonix` }],
+      "application/feed+json": [{ url: withBasePath("/feed.json"), title: `${site.title} · toyonix` }],
+    },
   },
 };
 

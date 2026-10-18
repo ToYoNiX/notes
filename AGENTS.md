@@ -96,7 +96,11 @@ npm run kit:update   # pull the newest compatible @toyonix/web-kit
   real alt text. A missing image fails the build.
 - **Rendering:** `lib/markdown.ts` (remark/rehype, GitHub-flavored Markdown). Raw HTML in notes
   is dropped. Article styles come from the kit's `Prose`; change them in the kit, not here.
-- **Feed:** `/notes/feed.xml` (RSS), built from the same notes.
+- **Feeds:** `/notes/feed.xml` (RSS) and `/notes/feed.json` (JSON Feed 1.1), built from the
+  same notes. **The root site reads `feed.json` in the browser** to show the latest notes on
+  the landing page, so publishing a note never redeploys root. Keep `feed.json` a valid JSON
+  Feed with `id`, `url`, `title`, `summary`, `date_published`, `tags` per item; root depends
+  on it.
 - **Licenses:** code is MIT (`LICENSE`); everything in `content/` and `public/images/` is
   CC BY-NC 4.0 (`LICENSE-content`).
 
