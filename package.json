@@ -4,7 +4,7 @@
   "type": "module",
   "toyonix": {
     "title": "Notes",
-    "description": "Write-ups on homelab, Linux, DevOps, and whatever I'm learning next.",
+    "description": "Write-ups on backend, architecture, homelab, Linux, DevOps, and whatever I'm learning next.",
     "nav": true,
     "order": 10,
     "status": "live"
